@@ -5,7 +5,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import createApp from '@shopify/app-bridge';
-import { Redirect, TitleBar, Button } from '@shopify/app-bridge/actions';
+import { Redirect } from '@shopify/app-bridge/actions';
 
 const apiKey = '4f11a728f162984ae3ad533cb848bf4a';
 const redirectUri = 'https://cb-shopify-nuxt.netlify.app/';
@@ -23,15 +23,6 @@ if (window.top == window.self) {
     host: host
   });
 
-  const breadcrumb = Button.create(app, { label: 'My breadcrumb' });
-  breadcrumb.subscribe(Button.Action.CLICK, () => {
-    app.dispatch(Redirect.toApp({ path: '/breadcrumb-link' }));
-  });
-  const titleBarOptions = {
-    title: 'My page title',
-    breadcrumbs: breadcrumb
-  };
-  const myTitleBar = TitleBar.create(app, titleBarOptions);
   Redirect.create(app).dispatch(Redirect.Action.REMOTE, permissionUrl);
   
 }
